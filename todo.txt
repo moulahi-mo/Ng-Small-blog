@@ -1,0 +1,4 @@
+
+-- create home page with pagination
+-- details page ( edit / delete / details )
+-- create new branch for every operation
