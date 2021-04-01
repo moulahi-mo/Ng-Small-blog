@@ -1,0 +1,43 @@
+<mat-card class="rounded-lg shadow-lg my-5 p-3">
+  <mat-card-header class="text-center">
+    <h4 class="lead text-center mx-auto font-weight-normal pt-3 pr-5">
+      {{ article.title | titlecase }}
+    </h4>
+  </mat-card-header>
+  <img
+    [src]="article.picture"
+    [alt]="article.title"
+    class="img my-5 d-block mx-auto img-fluid"
+  />
+  <mat-card-content class="">
+    <p class="text-muted">
+      {{ article.description | titlecase }}
+    </p>
+  </mat-card-content>
+  <div
+    class="row d-flex flex-column flex-md-row justify-content-between mt-5 align-items-center"
+  >
+    <div class="col">
+      <small class="text-muted">
+        {{ article.createdAt | date: "medium" }}
+      </small>
+    </div>
+
+    <div class="col">
+      <mat-card-actions class="d-flex justify-content-center">
+        <button mat-button color="primary">
+          <i class="material-icons">loupe</i>
+          Details
+        </button>
+        <button mat-button>
+          <i class="material-icons">create</i>
+          Edit
+        </button>
+        <button mat-button color="warn">
+          <i class="material-icons">delete</i>
+          Delete
+        </button>
+      </mat-card-actions>
+    </div>
+  </div>
+</mat-card>
