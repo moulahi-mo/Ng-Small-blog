@@ -13,6 +13,10 @@ import { LoaderComponent } from './components/shared/loader/loader.component';
 import { NoDataComponent } from './components/shared/no-data/no-data.component';
 import { ArticleCardComponent } from './components/articles/article-card/article-card.component';
 import { ArticlesService } from './services/articles.service';
+import { AddArticleComponent } from './components/articles/add-article/add-article.component';
+import { EditArticleComponent } from './components/articles/edit-article/edit-article.component';
+import { DetailsArticleComponent } from './components/articles/details-article/details-article.component';
+import { AsideArticlesComponent } from './components/articles/aside-articles/aside-articles.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +27,10 @@ import { ArticlesService } from './services/articles.service';
     LoaderComponent,
     NoDataComponent,
     ArticleCardComponent,
+    AddArticleComponent,
+    EditArticleComponent,
+    DetailsArticleComponent,
+    AsideArticlesComponent,
   ],
   imports: [
     BrowserModule,

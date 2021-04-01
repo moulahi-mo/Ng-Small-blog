@@ -1,16 +1,34 @@
 <section class="d-flex flex-column justify-content-between my-5">
   <h1 class="text-uppercase text-center text-prime mb-5">articles</h1>
-  <div class="row">
-    <div class="col-9 mx-auto my-3">
+  <section class="mt-5 mx-auto">
+    <app-loader *ngIf="!isError && isLoading"></app-loader>
+    <app-error *ngIf="isError" [message]="isError"></app-error>
+    <app-no-data
+      *ngIf="articles.length === 0 && !isError && !isLoading"
+    ></app-no-data>
+  </section>
+  <div class="row" *ngIf="articles.length > 0 && !isLoading">
+    <!--! aside add / archive -->
+    <app-aside-articles
+      [years]="years"
+      [months]="months"
+      class="col-12 mx-auto"
+    ></app-aside-articles>
+    <!--! articles -->
+
+    <article class="col-12 mx-auto my-3">
       <app-article-card
         *ngFor="let article of articles"
         [article]="article"
         class=""
       ></app-article-card>
-    </div>
+    </article>
+
+    <!--! paginator -->
     <div class="col-12 d-flex justify-content-center">
       <mat-paginator
-        [length]="articles.length"
+        showFirstLastButtons
+        [length]="list.length"
         [pageSize]="pageSize"
         [pageSizeOptions]="pageSizeOptions"
         (page)="pageEvent($event)"
