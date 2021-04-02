@@ -53,11 +53,16 @@ export class EditArticleComponent implements OnInit {
     this.articleServices
       .editArticle({ ...form.value, id: this.article.id })
       .subscribe(
-        (data) => {
-          console.log(data, 'is edited');
-          this.isLoading = false;
-          this.router.navigate(['/']);
-          form.reset();
+        (data: any) => {
+          if (data.status === 'failed') {
+            this.isError = data.reason;
+            this.isLoading = false;
+          } else {
+            console.log(data, 'is edited');
+            this.isLoading = false;
+            this.router.navigate(['/']);
+            form.reset();
+          }
         },
         (err) => {
           this.isError = err;

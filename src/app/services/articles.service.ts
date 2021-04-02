@@ -41,6 +41,12 @@ export class ArticlesService {
       .put<Article>(this.apiUrl + `?id=${article.id}`, article, httpOptions)
       .pipe(catchError(this.HundleErrors));
   }
+  //* Post create article
+  public createArticle(article: Article): Observable<Article> {
+    return this._http
+      .post<Article>(this.apiUrl, article, httpOptions)
+      .pipe(catchError(this.HundleErrors));
+  }
 
   //! hundling errors
   private HundleErrors(error: HttpErrorResponse) {
