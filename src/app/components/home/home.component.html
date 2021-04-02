@@ -1,8 +1,11 @@
 <section class="d-flex flex-column justify-content-between my-5">
   <h1 class="text-uppercase text-center text-prime mb-5">articles</h1>
   <section class="mt-5 mx-auto">
+    <!-- ! loader -->
     <app-loader *ngIf="!isError && isLoading"></app-loader>
+    <!-- ! error -->
     <app-error *ngIf="isError" [message]="isError"></app-error>
+    <!-- ! no data found -->
     <app-no-data
       *ngIf="articles.length === 0 && !isError && !isLoading"
     ></app-no-data>

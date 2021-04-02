@@ -8,6 +8,7 @@ import { Article } from 'src/app/models/interfaces';
 })
 export class ArticleCardComponent implements OnInit {
   @Input() article: Article;
+  @Input() buttons: string[] = [];
   constructor() {}
 
   ngOnInit(): void {}

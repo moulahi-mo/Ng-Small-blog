@@ -25,20 +25,30 @@
     </div>
 
     <div class="col">
-      <mat-card-actions class="d-flex justify-content-center">
+      <mat-card-actions class="d-flex justify-content-end align-items-center">
         <button
+          *ngIf="!buttons.includes('details')"
           [routerLink]="['/articles', article.id]"
           mat-button
           color="primary"
         >
-          <i class="material-icons">loupe</i>
+          <i class="material-icons">more</i>
           Details
         </button>
-        <button [routerLink]="['/articles', 'edit', article.id]" mat-button>
+        <button
+          *ngIf="!buttons.includes('edit')"
+          [routerLink]="['/articles', 'edit', article.id]"
+          mat-button
+        >
           <i class="material-icons">create</i>
           Edit
         </button>
-        <button mat-button color="warn">
+        <button
+          *ngIf="!buttons.includes('delete')"
+          mat-button
+          color="warn"
+          class=""
+        >
           <i class="material-icons">delete</i>
           Delete
         </button>

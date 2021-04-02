@@ -21,10 +21,17 @@ export class ArticlesService {
   apiUrl: string = environment.apiUrl;
 
   constructor(private _http: HttpClient) {}
-
+  //* GET all articles
   public FetchAllArticles(): Observable<Article[]> {
     return this._http
       .get<Article[]>(this.apiUrl, httpOptions)
+      .pipe(catchError(this.HundleErrors));
+  }
+
+  //* GET single articles
+  public FetchSingleArticle(id: number): Observable<Article> {
+    return this._http
+      .get<Article>(this.apiUrl + `?id=${id}`, httpOptions)
       .pipe(catchError(this.HundleErrors));
   }
 
