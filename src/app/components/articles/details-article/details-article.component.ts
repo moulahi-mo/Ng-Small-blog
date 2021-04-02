@@ -19,7 +19,6 @@ export class DetailsArticleComponent implements OnInit {
 
   ngOnInit(): void {
     const id = +this.route.snapshot.paramMap.get('id');
-    console.log(id);
     this.getSingleArticle(id);
   }
 

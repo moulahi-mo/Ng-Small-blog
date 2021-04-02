@@ -8,8 +8,6 @@
     <app-loader *ngIf="!isError && isLoading"></app-loader>
     <!-- ! error -->
     <app-error *ngIf="isError" [message]="isError"></app-error>
-    <!-- ! no data found -->
-    <!-- <app-no-data *ngIf="!article?.id && !isError && !isLoading"></app-no-data> -->
   </section>
   <div *ngIf="article?.id && !isLoading" class="row">
     <aside class="col-12 my-3 d-flex justify-content-between">

@@ -28,10 +28,17 @@ export class ArticlesService {
       .pipe(catchError(this.HundleErrors));
   }
 
-  //* GET single articles
+  //* GET single article
   public FetchSingleArticle(id: number): Observable<Article> {
     return this._http
       .get<Article>(this.apiUrl + `?id=${id}`, httpOptions)
+      .pipe(catchError(this.HundleErrors));
+  }
+
+  //* Put edit article
+  public editArticle(article: Article): Observable<Article> {
+    return this._http
+      .put<Article>(this.apiUrl + `?id=${article.id}`, article, httpOptions)
       .pipe(catchError(this.HundleErrors));
   }
 
