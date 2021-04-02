@@ -48,6 +48,13 @@ export class ArticlesService {
       .pipe(catchError(this.HundleErrors));
   }
 
+  //* Delete  article
+  public deleteArticle(id: number): Observable<any> {
+    return this._http
+      .delete<Article>(this.apiUrl + `?id=${id}`, httpOptions)
+      .pipe(catchError(this.HundleErrors));
+  }
+
   //! hundling errors
   private HundleErrors(error: HttpErrorResponse) {
     let err = 'Something bad happned !!';

@@ -17,6 +17,11 @@ import { AddArticleComponent } from './components/articles/add-article/add-artic
 import { EditArticleComponent } from './components/articles/edit-article/edit-article.component';
 import { DetailsArticleComponent } from './components/articles/details-article/details-article.component';
 import { AsideArticlesComponent } from './components/articles/aside-articles/aside-articles.component';
+import {
+  DeleteArticleComponent,
+  ModalDelete,
+} from './components/articles/delete-article/delete-article.component';
+import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -31,6 +36,8 @@ import { AsideArticlesComponent } from './components/articles/aside-articles/asi
     EditArticleComponent,
     DetailsArticleComponent,
     AsideArticlesComponent,
+    DeleteArticleComponent,
+    ModalDelete,
   ],
   imports: [
     BrowserModule,
@@ -40,7 +47,11 @@ import { AsideArticlesComponent } from './components/articles/aside-articles/asi
     FormsModule,
     HttpClientModule,
   ],
-  providers: [ArticlesService],
+  entryComponents: [ModalDelete],
+  providers: [
+    ArticlesService,
+    { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: false } },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

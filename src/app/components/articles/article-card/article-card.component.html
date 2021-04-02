@@ -42,15 +42,12 @@
           <i class="material-icons">create</i>
           Edit
         </button>
-        <button
+        <!--! delete button -->
+        <app-delete-article
+          (onDeleteArticle)="onDelete()"
+          [id]="article.id"
           *ngIf="!buttons.includes('delete')"
-          mat-button
-          color="warn"
-          class=""
-        >
-          <i class="material-icons">delete</i>
-          Delete
-        </button>
+        ></app-delete-article>
       </mat-card-actions>
     </div>
   </div>
