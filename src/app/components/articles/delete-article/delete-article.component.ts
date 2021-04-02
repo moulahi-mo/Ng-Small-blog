@@ -21,7 +21,7 @@ import { ArticlesService } from 'src/app/services/articles.service';
 })
 export class DeleteArticleComponent implements OnInit {
   @Input() id: number;
-  item: any;
+  isDeleted: boolean = false;
   constructor(public dialog: MatDialog) {}
 
   ngOnInit(): void {}
@@ -30,11 +30,12 @@ export class DeleteArticleComponent implements OnInit {
     const dialogRef = this.dialog.open(ModalDelete, {
       height: '250px',
       width: '450px',
-      data: { id: this.id },
+      data: { id: this.id, isDeleted: this.isDeleted },
     });
 
     dialogRef.afterClosed().subscribe((result) => {
-      this.item = result;
+      this.isDeleted = result;
+      console.log(this.isDeleted);
     });
   }
 }
@@ -45,7 +46,7 @@ export class DeleteArticleComponent implements OnInit {
 })
 export class ModalDelete {
   isError: string = null;
-  @Output() onDeleteArticle: EventEmitter<boolean> = new EventEmitter();
+
   constructor(
     public dialogRef: MatDialogRef<ModalDelete>,
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -67,9 +68,10 @@ export class ModalDelete {
           this.isError = data.reason;
         } else {
           console.log(data, 'is deleted');
-          this.onDeleteArticle.emit();
-          this.router.navigate(['/']);
           this.dialogRef.close();
+          this.router.navigate(['/home']);
+
+          document.getElementById(`${this.data.id}`).remove();
         }
       },
       (err) => {

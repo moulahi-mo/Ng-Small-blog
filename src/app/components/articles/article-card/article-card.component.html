@@ -44,7 +44,6 @@
         </button>
         <!--! delete button -->
         <app-delete-article
-          (onDeleteArticle)="onDelete()"
           [id]="article.id"
           *ngIf="!buttons.includes('delete')"
         ></app-delete-article>

@@ -9,11 +9,8 @@ import { Article } from 'src/app/models/interfaces';
 export class ArticleCardComponent implements OnInit {
   @Input() article: Article;
   @Input() buttons: string[] = [];
-  @Output() onDeleteArticle: EventEmitter<number> = new EventEmitter();
+
   constructor() {}
 
   ngOnInit(): void {}
-  public onDelete() {
-    this.onDeleteArticle.emit(this.article.id);
-  }
 }

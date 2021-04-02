@@ -75,16 +75,4 @@ export class HomeComponent implements OnInit {
     this.months = [...new Set(this.months)];
     console.log(this.months, this.years);
   }
-
-  public onDelete(id: number) {
-    // this.articles.forEach((article, index) => {
-    //   if (article.id === id) {
-    //     this.articles.splice(index, 1);
-    //   }
-    // });
-
-    // this.filterArtcilesBYPageSize(this.articles, 0);
-    // this.getAllArticles();
-    console.log(id);
-  }
 }
