@@ -11,13 +11,14 @@
     <!-- ! error -->
     <app-error *ngIf="isError" [message]="isError"></app-error>
   </section>
-
+  <!--*  edit form -->
   <form
     *ngIf="!isLoading"
     #form="ngForm"
     (ngSubmit)="onSubmit(form)"
     class="col-12 col-md-8 d-flex flex-column my-5"
   >
+    <!--*  title  -------------->
     <mat-form-field hintLabel="Max 70 characters">
       <mat-label>Title</mat-label>
       <input
@@ -43,6 +44,7 @@
         title is required
       </mat-error>
     </mat-form-field>
+    <!--*  picture  -------------->
     <mat-form-field class="my-3">
       <mat-label>Picture</mat-label>
       <input
@@ -58,6 +60,7 @@
         picture is required
       </mat-error>
     </mat-form-field>
+    <!--*  description  -------------->
     <mat-form-field hintLabel="Max 500 characters">
       <mat-label>Description</mat-label>
       <textarea

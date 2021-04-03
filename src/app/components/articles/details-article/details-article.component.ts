@@ -18,16 +18,16 @@ export class DetailsArticleComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    //* get id from params route
     const id = +this.route.snapshot.paramMap.get('id');
     this.getSingleArticle(id);
   }
-
+  //* get article by ID
   public getSingleArticle(id: number) {
     this.isError = null;
     this.isLoading = true;
     this.articleServices.FetchSingleArticle(id).subscribe(
       (article: Article) => {
-        console.log(article);
         this.article = article;
         this.isLoading = false;
       },

@@ -20,26 +20,31 @@ import { ArticlesService } from 'src/app/services/articles.service';
   styleUrls: ['./delete-article.component.scss'],
 })
 export class DeleteArticleComponent implements OnInit {
+  @Output() articleIsDeleted: EventEmitter<number> = new EventEmitter();
   @Input() id: number;
   isDeleted: boolean = false;
   constructor(public dialog: MatDialog) {}
 
   ngOnInit(): void {}
-
+  //* open Modal
   public openModal() {
     const dialogRef = this.dialog.open(ModalDelete, {
       height: '250px',
       width: '450px',
       data: { id: this.id, isDeleted: this.isDeleted },
     });
-
+    //* after Modal been closed
     dialogRef.afterClosed().subscribe((result) => {
+      // ! if article is deleted emit this event to parent
       this.isDeleted = result;
-      console.log(this.isDeleted);
+      this.isDeleted ? this.articleIsDeleted.emit(this.id) : '';
     });
   }
 }
-
+//
+//******************* ! Delete Modal component  ******************
+//
+//
 @Component({
   selector: 'delete-modal',
   templateUrl: 'delete.modal.html',
@@ -53,25 +58,23 @@ export class ModalDelete {
     private articleServices: ArticlesService,
     private router: Router
   ) {}
-
+  //* on close modal
   public onNoClick(): void {
     this.dialogRef.close();
   }
-
+  //* clicking yes button delete article
   public onDelete() {
     this.isError = null;
-    console.log(this.data.id);
 
     this.articleServices.deleteArticle(this.data.id).subscribe(
       (data: any) => {
+        //* if data status faild show error
         if (data.status === 'failed') {
           this.isError = data.reason;
         } else {
-          console.log(data, 'is deleted');
+          //* if data status success
           this.dialogRef.close();
           this.router.navigate(['/home']);
-
-          document.getElementById(`${this.data.id}`).remove();
         }
       },
       (err) => {

@@ -1,14 +1,17 @@
 <mat-card class="rounded-lg shadow-lg my-5 p-3">
   <mat-card-header class="text-center">
+    <!--! title -->
     <h4 class="lead text-center mx-auto font-weight-normal pt-3 pr-5">
       {{ article.title | titlecase }}
     </h4>
   </mat-card-header>
+  <!--! image -->
   <img
     [src]="article.picture"
     [alt]="article.title"
     class="img my-5 d-block mx-auto img-fluid"
   />
+  <!--! description -->
   <mat-card-content class="">
     <p class="text-muted">
       {{ article.description.substr(0, 199) | titlecase }}
@@ -17,6 +20,7 @@
   <div
     class="row d-flex flex-column flex-md-row justify-content-between mt-5 align-items-center"
   >
+    <!--! created date -->
     <div class="col">
       <small class="text-muted">
         {{ article.createdAt | date: "medium" }}
@@ -25,6 +29,7 @@
 
     <div class="col">
       <mat-card-actions class="d-flex justify-content-end align-items-center">
+        <!--! details button -->
         <button
           *ngIf="!buttons.includes('details')"
           [routerLink]="['/articles', article.id]"
@@ -34,6 +39,7 @@
           <i class="material-icons">more</i>
           Details
         </button>
+        <!--! edit button -->
         <button
           *ngIf="!buttons.includes('edit')"
           [routerLink]="['/articles', 'edit', article.id]"
@@ -44,6 +50,7 @@
         </button>
         <!--! delete button -->
         <app-delete-article
+        (articleIsDeleted)="onArticleIsDeleted($event)"
           [id]="article.id"
           *ngIf="!buttons.includes('delete')"
         ></app-delete-article>

@@ -25,16 +25,16 @@ export class EditArticleComponent implements OnInit {
       description: null,
       picture: null,
     };
+    //* get params id from route
     const id = +this.route.snapshot.paramMap.get('id');
     this.getSingleArticle(id);
   }
-
+  // * fetch article by id
   public getSingleArticle(id: number) {
     this.isError = null;
     this.isLoading = true;
     this.articleServices.FetchSingleArticle(id).subscribe(
       (article: Article) => {
-        console.log(article);
         this.article = article;
         this.isLoading = false;
       },
@@ -44,21 +44,22 @@ export class EditArticleComponent implements OnInit {
       }
     );
   }
-
+  // * on submit form edit article
   public onSubmit(form: NgForm) {
     this.isError = null;
     this.isLoading = true;
-    console.log(form.value);
 
     this.articleServices
       .editArticle({ ...form.value, id: this.article.id })
       .subscribe(
         (data: any) => {
+          //* if data status faild show error
           if (data.status === 'failed') {
             this.isError = data.reason;
             this.isLoading = false;
           } else {
-            console.log(data, 'is edited');
+            //* if data status success
+
             this.isLoading = false;
             this.router.navigate(['/']);
             form.reset();
