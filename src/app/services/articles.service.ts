@@ -36,7 +36,7 @@ export class ArticlesService {
   }
 
   //* Put edit article
-  public editArticle(article: Article): Observable<Article> {
+  public editArticle(article: Article): Observable<any> {
     return this._http
       .put<Article>(this.apiUrl + `?id=${article.id}`, article, httpOptions)
       .pipe(catchError(this.HundleErrors));
@@ -56,7 +56,7 @@ export class ArticlesService {
   }
 
   //! hundling errors
-  private HundleErrors(error: HttpErrorResponse) {
+  public HundleErrors(error: HttpErrorResponse) {
     let err = 'Something bad happned !!';
     if (error) {
       return throwError(
