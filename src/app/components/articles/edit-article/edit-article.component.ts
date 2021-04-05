@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Article } from 'src/app/models/interfaces';
@@ -10,8 +10,11 @@ import { ArticlesService } from 'src/app/services/articles.service';
   styleUrls: ['./edit-article.component.scss'],
 })
 export class EditArticleComponent implements OnInit {
+  @ViewChild('form') form: NgForm;
   isLoading: boolean = false;
   isError: string = null;
+  submited: boolean = false;
+  id: number = null;
   article: Article;
   constructor(
     private route: ActivatedRoute,
@@ -27,6 +30,7 @@ export class EditArticleComponent implements OnInit {
     };
     //* get params id from route
     const id = +this.route.snapshot.paramMap.get('id');
+    this.id = id;
     this.getSingleArticle(id);
   }
   // * fetch article by id
@@ -57,15 +61,18 @@ export class EditArticleComponent implements OnInit {
           if (data.status === 'failed') {
             this.isError = data.reason;
             this.isLoading = false;
+            this.submited = false;
           } else {
             //* if data status success
-
+            this.submited = false;
+            this.submited = true;
             this.isLoading = false;
             this.router.navigate(['/']);
             form.reset();
           }
         },
         (err) => {
+          this.submited = false;
           this.isError = err;
           this.isLoading = false;
         }

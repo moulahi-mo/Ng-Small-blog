@@ -61,11 +61,6 @@ describe('ArticlesService', () => {
     articlesService.FetchAllArticles().subscribe((response) => {
       expect(response).toEqual(articlesResponse);
     });
-
-    // const req = httpMock.expectOne(environment.apiUrl);
-    // expect(req.request.method).toBe('GET');
-
-    // req.flush(articlesResponse);
   });
 
   //! FetchSingleArticle tests ( GET single article )
@@ -87,12 +82,6 @@ describe('ArticlesService', () => {
       expect(response.id).toBe(1);
       expect(response).toEqual(singleArticle);
     });
-    // const req = httpMock.expectOne(
-    //   environment.apiUrl + `?id=${singleArticle.id}`
-    // );
-    // expect(req.request.method).toBe('GET');
-
-    // req.flush(singleArticle);
   });
 
   //! createArticle tests ( Post edit article )
@@ -156,7 +145,7 @@ describe('ArticlesService', () => {
   });
 
   //! Errors hundling test
-  it('correctly handles error', () => {
+  it('should correctly handles errors', () => {
     const error: any = new Error('Something bad happned !!');
     spyOn(articlesService, 'HundleErrors').and.callThrough();
     articlesService.HundleErrors(error).subscribe((res) => {

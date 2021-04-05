@@ -13,6 +13,7 @@
   </section>
   <!--*  edit form -->
   <form
+    id="form"
     *ngIf="!isLoading"
     #form="ngForm"
     (ngSubmit)="onSubmit(form)"
@@ -22,6 +23,7 @@
     <mat-form-field hintLabel="Max 70 characters">
       <mat-label>Title</mat-label>
       <input
+        class="title"
         matInput
         required
         minlength="3"
@@ -48,6 +50,7 @@
     <mat-form-field class="my-3">
       <mat-label>Picture</mat-label>
       <input
+        class="picture"
         matInput
         required
         #picture="ngModel"
